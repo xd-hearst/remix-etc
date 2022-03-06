@@ -1,4 +1,4 @@
-import { createPost } from '~/post';
+import { createPost } from '../../../api/post';
 import type { ActionFunction } from 'remix';
 import { useActionData, Form, redirect, useTransition } from 'remix';
 import invariant from 'tiny-invariant';

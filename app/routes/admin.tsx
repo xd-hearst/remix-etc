@@ -1,14 +1,9 @@
 import { Link, useLoaderData, Outlet } from 'remix';
-import { getPosts } from '~/post';
-import type { Post } from '~/post';
+import type { Post } from '../../api/post';
 import adminStyles from '~/styles/admin.css';
 
 export const links = () => {
 	return [{ rel: 'stylesheet', href: adminStyles }];
-};
-
-export const loader = async () => {
-	return getPosts();
 };
 
 export default function Admin() {

@@ -1,22 +1,32 @@
-import { useLoaderData } from 'remix';
-import { Link } from 'remix';
-import { getPosts } from '~/post';
-import type { Post } from '~/post';
+import { Link, useLoaderData } from 'remix';
 
-export const loader = async () => getPosts();
+// Import all your posts from the app/routes/posts directory. Since these are
+// regular route modules, they will all be available for individual viewing
+// at /posts/a, for example.
+import { getPostData } from '../mdx-posts/first-post';
+import Post from './post-test';
 
-export default function Posts() {
+export type Post = {
+	slug: string;
+	title: string;
+	markdown: string;
+	filename: string;
+	attributes: any;
+};
+
+export async function loader() {
+	// Return metadata about each of the posts for display on the index page.
+	// Referencing the posts here instead of in the Index component down below
+	// lets us avoid bundling the actual posts themselves in the bundle for the
+	// index page.
+	const { code, frontmatter } = await getPostData('my-first-post');
+
+	return [{ code, frontmatter }];
+}
+
+export default function Index() {
 	const posts = useLoaderData();
-	console.log(posts);
-	return (
-		<div>
-			<ul>
-				{posts.map((post: Post) => (
-					<li key={post.slug}>
-						<Link to={post.slug}>{post.title}</Link>
-					</li>
-				))}
-			</ul>
-		</div>
-	);
+
+	const { code, frontmatter } = posts[0];
+	return <Post code={code} frontmatter={frontmatter} />;
 }

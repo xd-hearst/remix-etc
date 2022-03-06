@@ -13,10 +13,13 @@
     "@remix-run/serve": "^1.0.6",
     "@remix-run/vercel": "^1.0.6",
     "@types/marked": "^4.0.2",
+    "esbuild": "^0.14.25",
     "front-matter": "^4.0.2",
     "marked": "^4.0.12",
+    "mdx-bundler": "^8.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "remark-mdx-images": "^1.0.3",
     "remix": "^1.0.6",
     "tiny-invariant": "^1.2.0"
   },
