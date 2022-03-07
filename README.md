@@ -1,6 +1,6 @@
-# Remix
+# A Remix app of a blog of a collection of links of JavaScript, Remix
 
-This directory is a brief example of a [Remix](https://remix.run/docs) site that can be deployed to Vercel with zero configuration.
+Something of something of something. Most boring. But could be useful
 
 ## Development
 

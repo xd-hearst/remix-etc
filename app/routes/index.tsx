@@ -1,43 +1,63 @@
 import type { MetaFunction, LoaderFunction } from 'remix';
 import { useLoaderData, json, Link } from 'remix';
+import LastNightToday from '~/imgs/last-week-tonight.jpg';
 
 type IndexData = {
 	resources: Array<{ name: string; url: string }>;
 	demos: Array<{ name: string; to: string }>;
+	people: Array<{ name: string; to: string }>;
 };
 
-// Loaders provide data to components and are only ever called on the server, so
-// you can connect to a database or run any server side code you want right next
-// to the component that renders it.
-// https://remix.run/api/conventions#loader
 export let loader: LoaderFunction = () => {
 	let data: IndexData = {
 		resources: [
 			{
-				name: 'Links',
-				url: 'https://remix.run/docs',
+				name: 'From JavaScript to React',
+				url: 'https://nextjs.org/learn/foundations/from-javascript-to-react',
 			},
 			{
-				name: 'React Router Docs',
-				url: 'https://reactrouter.com/docs',
+				name: 'From React to Next.js',
+				url: 'https://nextjs.org/learn/foundations/from-react-to-nextjs',
 			},
 			{
-				name: 'Remix Discord',
-				url: 'https://discord.gg/VBePs6d',
+				name: 'How Next.js Works',
+				url: 'https://nextjs.org/learn/foundations/how-nextjs-works',
+			},
+			{
+				name: 'how modern browsers work - part 1',
+				url: 'https://developers.google.com/web/updates/2018/09/inside-browser-part1',
+			},
+			{
+				name: 'how modern browsers work - part 2',
+				url: 'https://developers.google.com/web/updates/2018/09/inside-browser-part2',
+			},
+			{
+				name: 'how modern browsers work - part 3',
+				url: 'https://developers.google.com/web/updates/2018/09/inside-browser-part3',
+			},
+			{
+				name: 'how modern browsers work - part 4',
+				url: 'https://developers.google.com/web/updates/2018/09/inside-browser-part4',
 			},
 		],
 		demos: [
 			{
-				to: 'admins/about',
-				name: 'Actions',
+				to: 'mdx-posts/first-post',
+				name: 'Week 1',
+			},
+		],
+		people: [
+			{
+				to: 'https://twitter.com/addyosmani',
+				name: 'Andy Osmani',
 			},
 			{
-				to: 'demos/about',
-				name: 'Nested Routes, CSS loading/unloading',
+				to: 'https://twitter.com/kentcdodds',
+				name: 'Kent C Dodds',
 			},
 			{
-				to: 'demos/params',
-				name: 'URL Params and Error Boundaries',
+				to: 'https://twitter.com/ryanflorence',
+				name: 'Ryan Florence',
 			},
 		],
 	};
@@ -49,8 +69,9 @@ export let loader: LoaderFunction = () => {
 // https://remix.run/api/conventions#meta
 export let meta: MetaFunction = () => {
 	return {
-		title: 'Remix Starter',
-		description: 'Welcome to remix!',
+		title: 'Last week today',
+		description:
+			'Weekly link list of useful links for reading, when you feel you have not had enough of JavaScript, etc',
 	};
 };
 
@@ -61,22 +82,27 @@ export default function Index() {
 	return (
 		<div className="remix__page">
 			<main>
-				<h2>Welcome to Remix!</h2>
-				<p>We're stoked that you're here. 🥳</p>
 				<p>
-					Feel free to take a look around the code to see how Remix does things,
-					it might be a bit different than what you’re used to. When you're
-					ready to dive deeper, we've got plenty of resources to get you
-					up-and-running quickly.
+					If you think you have not had enough of JavaScript, React, Next Js ...
+					and all that Jazz (js) 🥳
 				</p>
 				<p>
-					Check out all the demos in this starter, and then just delete the{' '}
-					<code>app/routes/demos</code> and <code>app/styles/demos</code>{' '}
-					folders when you're ready to turn this into your next project.
+					This is my collection of weekly links of things that might seem
+					important in the universe of web development. JavaScript, React, Next
+					Js, Remix, css. Basic or not so basic or something entirely bizzare.
+					web development stuff.
+				</p>
+				<p>
+					A lot of links I simply collected from work. Why not? When someone
+					throws you a gem, pick it up.
+				</p>
+				<p>
+					{' '}
+					<img src={LastNightToday} alt="Logo" width="100%" />
 				</p>
 			</main>
 			<aside>
-				<h2>Demos In This App</h2>
+				<h2>Weekly Issues</h2>
 				<ul>
 					{data.demos.map((demo) => (
 						<li key={demo.to} className="remix__page__resource">
@@ -86,11 +112,21 @@ export default function Index() {
 						</li>
 					))}
 				</ul>
-				<h2>Resources</h2>
+				<h2>Fundamentals</h2>
 				<ul>
 					{data.resources.map((resource) => (
 						<li key={resource.url} className="remix__page__resource">
 							<a href={resource.url}>{resource.name}</a>
+						</li>
+					))}
+				</ul>
+				<h2>Important People who tweets</h2>
+				<ul>
+					{data.people.map((demo) => (
+						<li key={demo.to} className="remix__page__resource">
+							<Link to={demo.to} prefetch="intent">
+								{demo.name}
+							</Link>
 						</li>
 					))}
 				</ul>
