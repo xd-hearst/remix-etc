@@ -1,10 +1,11 @@
 import type { MetaFunction, LoaderFunction } from 'remix';
 import { useLoaderData, json, Link } from 'remix';
 import LastNightToday from '~/imgs/last-week-tonight.jpg';
+import { postLinks, posts, LatestIssue } from './mdx-posts/getAllPosts';
 
 type IndexData = {
 	resources: Array<{ name: string; url: string }>;
-	demos: Array<{ name: string; to: string }>;
+	postLinks: Array<{ name: string; to: string }>;
 	people: Array<{ name: string; to: string }>;
 };
 
@@ -40,12 +41,7 @@ export let loader: LoaderFunction = () => {
 				url: 'https://developers.google.com/web/updates/2018/09/inside-browser-part4',
 			},
 		],
-		demos: [
-			{
-				to: 'mdx-posts/first-post',
-				name: 'Week 1',
-			},
-		],
+		postLinks,
 		people: [
 			{
 				to: 'https://twitter.com/addyosmani',
@@ -83,28 +79,27 @@ export default function Index() {
 		<div className="remix__page">
 			<main>
 				<p>
-					If you think you have not had enough of JavaScript, React, Next Js ...
-					and all that Jazz (js) 🥳
+					Just when you think you have had enough of JavaScript, React, Next Js
+					... and all that Jazz (js) 🥳
 				</p>
 				<p>
 					This is my collection of weekly links of things that might seem
 					important in the universe of web development. JavaScript, React, Next
-					Js, Remix, css. Basic or not so basic or something entirely bizzare.
-					web development stuff.
+					Js, Remix, css. Basic or not so basic or something random (to you).
 				</p>
-				<p>
-					A lot of links I simply collected from work. Why not? When someone
-					throws you a gem, pick it up.
-				</p>
+				<p>A lot of the links I simply collected from work. Why not?</p>
 				<p>
 					{' '}
 					<img src={LastNightToday} alt="Logo" width="100%" />
 				</p>
+				<div style={{ maxWidth: '500px' }}>
+					<LatestIssue />
+				</div>
 			</main>
 			<aside>
 				<h2>Weekly Issues</h2>
 				<ul>
-					{data.demos.map((demo) => (
+					{data.postLinks.map((demo) => (
 						<li key={demo.to} className="remix__page__resource">
 							<Link to={demo.to} prefetch="intent">
 								{demo.name}

@@ -1,6 +1,10 @@
 # A Remix app of a blog of a collection of links of JavaScript, Remix
 
-Something of something of something. Most boring. But could be useful
+Just when you think you have had enough of JavaScript, React, Next Js ... and all that Jazz (js) 🥳
+
+This is my collection of weekly links of things that might seem important in the universe of web development. JavaScript, React, Next Js, Remix, css. Basic or not so basic or something random (to you).
+
+A lot of the links I simply collected from work. Why not?
 
 ## Development
 

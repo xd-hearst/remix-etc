@@ -1,7 +1,7 @@
 ---
 meta:
-  title: Issue 1 (Feb 28 - March 5th)
-  description: The beginning, could be the end too
+  title: Issue 1 (Feb 28 - March 5th, 2022)
+  description: Let me try it out
 ---
 
 ## Issue 1 (Feb 28 - March 5th)
@@ -16,6 +16,5 @@ An objective comparison between Remix and Next.js. [Remix vs Next.js](https://re
 
 ### Fun little project
 
-[Code Tetris in 200 Lines of Code using React](https://blog.ag-grid.com/tetris-to-learn-react/)
-
+[Code Tetris in 200 Lines of Code using React](https://blog.ag-grid.com/tetris-to-learn-react/)\
 Writing Tetris is exciting, as it forces you to understand many aspects of a programming language / framework in a very small application.

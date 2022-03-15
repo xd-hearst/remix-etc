@@ -152,7 +152,7 @@ function Layout({ children }: { children: React.ReactNode }) {
 			</div>
 			<footer className="remix-app__footer">
 				<div className="container remix-app__footer-content">
-					<p>&copy; You!</p>
+					<p>&copy; An infinite deal of nothing</p>
 				</div>
 			</footer>
 		</div>
