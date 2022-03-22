@@ -84,8 +84,8 @@ export default function Index() {
 				</p>
 				<p className="mb-2 md:pb-0 text-sm">
 					This is my collection of weekly links of things that might seem
-					important in the universe of web development. JavaScript, React, Next
-					Js, Remix, css. Basic or not so basic or something random (to you).
+					important at this fleeting moment in the universe of web development.
+					JavaScript, React, Next Js, Remix, CSS.
 				</p>
 				<p className="mb-2 md:pb-0 text-sm">
 					A lot of the links I simply collected from work. Why not?
