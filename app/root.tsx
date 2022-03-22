@@ -9,17 +9,19 @@ import {
 	useCatch,
 } from 'remix';
 import type { LinksFunction } from 'remix';
-import globalStylesUrl from '~/styles/global.css';
-import darkStylesUrl from '~/styles/dark.css';
+import tailwind from '~/tailwind.css';
+import mardownCss from '~/styles/markdown.css';
 
 // https://remix.run/api/app#links
 export let links: LinksFunction = () => {
 	return [
-		{ rel: 'stylesheet', href: globalStylesUrl },
 		{
 			rel: 'stylesheet',
-			href: darkStylesUrl,
-			media: '(prefers-color-scheme: dark)',
+			href: tailwind,
+		},
+		{
+			rel: 'stylesheet',
+			href: mardownCss,
 		},
 		{
 			rel: 'shortcut icon',
@@ -125,35 +127,116 @@ function Document({
 
 function Layout({ children }: { children: React.ReactNode }) {
 	return (
-		<div className="remix-app">
-			<header className="remix-app__header">
-				<div className="container remix-app__header-content">
-					<Link to="/" title="Remix" className="remix-app__header-home-link">
-						<RemixLogo />{' '}
-						<h2 style={{ paddingLeft: '.5rem' }}>Last Week Today</h2>
-					</Link>
-					<nav aria-label="Main navigation" className="remix-app__header-nav">
-						<ul>
-							<li>
+		<div>
+			<header className="fixed w-full z-10 top-0 bg-white border-b border-gray-400">
+				<div className="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-4">
+					<div className="pl-4 flex items-center">
+						<div style={{ width: '45px' }}>
+							<RemixLogo />{' '}
+						</div>
+						<Link
+							to="/"
+							title="Remix"
+							className="text-gray-900 text-base no-underline hover:no-underline font-extrabold text-xl"
+						>
+							<h2 style={{ paddingLeft: '.5rem' }}>Last Week Today</h2>
+						</Link>
+					</div>
+					<div className="block lg:hidden pr-4">
+						<button
+							id="nav-toggle"
+							className="flex items-center px-3 py-2 border rounded text-gray-500 border-gray-600 hover:text-gray-900 hover:border-purple-500 appearance-none focus:outline-none"
+						>
+							<svg
+								className="fill-current h-3 w-3"
+								viewBox="0 0 20 20"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<title>Menu</title>
+								<path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
+							</svg>
+						</button>
+					</div>
+					<div
+						className="w-full flex-grow lg:flex lg:content-center lg:items-center lg:w-auto lg:block mt-2 lg:mt-0 z-20 hidden"
+						id="nav-content"
+					>
+						<div className="flex-1 w-full mx-auto max-w-sm content-center py-4 lg:py-0">
+							<div className="relative pull-right pl-4 pr-4 md:pr-0">
+								<input
+									type="search"
+									placeholder="Search"
+									className="w-full bg-gray-100 text-sm text-gray-800 transition border focus:outline-none focus:border-purple-500 rounded py-1 px-2 pl-10 appearance-none leading-normal"
+								/>
+								<div
+									className="absolute search-icon"
+									style={{ top: '0.375rem', left: '1.75rem' }}
+								>
+									<svg
+										className="fill-current pointer-events-none text-gray-800 w-4 h-4"
+										xmlns="http://www.w3.org/2000/svg"
+										viewBox="0 0 20 20"
+									>
+										<path d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"></path>
+									</svg>
+								</div>
+							</div>
+						</div>
+						<ul className="list-reset lg:flex justify-end items-center">
+							<li className="mr-3 py-2 lg:py-0">
 								<Link to="/">Home</Link>
 							</li>
-							<li>
-								<Link to="/posts">Weekly Posts</Link>
+							<li className="mr-3 py-2 lg:py-0">
+								<Link
+									className="inline-block text-gray-600 no-underline hover:text-gray-900 hover:underline py-2 px-4"
+									to="/posts"
+								>
+									Weekly Posts
+								</Link>
 							</li>
-							<li>
-								<a href="https://github.com/xd-hearst/remix-etc">GitHub</a>
+							<li className="mr-3 py-2 lg:py-0">
+								<a
+									className="inline-block text-gray-600 no-underline hover:text-gray-900 hover:underline py-2 px-4"
+									href="https://github.com/xd-hearst/remix-etc"
+								>
+									GitHub
+								</a>
 							</li>
 						</ul>
-					</nav>
+					</div>
 				</div>
 			</header>
-			<div className="remix-app__main">
-				<div className="container remix-app__main-content">{children}</div>
+			<div className="bg-gray-100 tracking-wider tracking-normal">
+				<div>{children}</div>
 			</div>
-			<footer className="remix-app__footer">
-				<div className="container remix-app__footer-content">
-					<p>&copy; An infinite deal of nothing</p>
+			<footer className="bg-white border-t border-gray-400 shadow fixed bottom-0 w-full z-10">
+				<div className="container mx-auto flex">
+					<div className="w-full mx-auto flex flex-wrap">
+						<div className="flex w-full lg:w-1/2 ">
+							<div className="px-8">
+								<h3 className="font-bold text-gray-900"></h3>
+								<p className="py-4 text-gray-600 text-sm">
+									&copy; An infinite deal of nothing
+								</p>
+							</div>
+						</div>
+						<div className="flex w-full lg:w-1/2 lg:justify-end lg:text-right">
+							<div className="px-8">
+								<ul className="list-reset items-center text-sm pt-3">
+									<li>
+										<a
+											className="inline-block text-gray-600 no-underline hover:text-gray-900 hover:underline py-1"
+											href="#"
+										>
+											Contact me
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
 				</div>
+				<div></div>
 			</footer>
 		</div>
 	);

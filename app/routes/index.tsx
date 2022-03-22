@@ -1,7 +1,7 @@
 import type { MetaFunction, LoaderFunction } from 'remix';
 import { useLoaderData, json, Link } from 'remix';
 import LastNightToday from '~/imgs/last-week-tonight.jpg';
-import { postLinks, posts, LatestIssue } from './mdx-posts/getAllPosts';
+import { postLinks, LatestIssue } from './mdx-posts/getAllPosts';
 
 type IndexData = {
 	resources: Array<{ name: string; url: string }>;
@@ -76,55 +76,63 @@ export default function Index() {
 	let data = useLoaderData<IndexData>();
 
 	return (
-		<div className="remix__page">
-			<main>
-				<p>
+		<div className="container w-full flex flex-wrap mx-auto px-2 pt-8 lg:pt-16 mt-16">
+			<main className="w-full lg:w-4/5 p-8 mt-6 lg:mt-0 text-gray-900 leading-normal bg-white border border-gray-400 border-rounded">
+				<p className="mb-2 md:pb-0 text-sm">
 					Just when you think you have had enough of JavaScript, React, Next Js
 					... and all that Jazz (js) 🥳
 				</p>
-				<p>
+				<p className="mb-2 md:pb-0 text-sm">
 					This is my collection of weekly links of things that might seem
 					important in the universe of web development. JavaScript, React, Next
 					Js, Remix, css. Basic or not so basic or something random (to you).
 				</p>
-				<p>A lot of the links I simply collected from work. Why not?</p>
-				<p>
-					{' '}
-					<img src={LastNightToday} alt="Logo" width="100%" />
+				<p className="mb-2 md:pb-0 text-sm">
+					A lot of the links I simply collected from work. Why not?
 				</p>
-				<div style={{ maxWidth: '500px' }}>
+				<div style={{ maxWidth: '500px' }} className="py-4  markdown-body">
 					<LatestIssue />
 				</div>
 			</main>
-			<aside>
-				<h2>Weekly Issues</h2>
-				<ul>
-					{data.postLinks.map((demo) => (
-						<li key={demo.to} className="remix__page__resource">
-							<Link to={demo.to} prefetch="intent">
-								{demo.name}
-							</Link>
-						</li>
-					))}
-				</ul>
-				<h2>Fundamentals</h2>
-				<ul>
-					{data.resources.map((resource) => (
-						<li key={resource.url} className="remix__page__resource">
-							<a href={resource.url}>{resource.name}</a>
-						</li>
-					))}
-				</ul>
-				<h2>Important People who tweets</h2>
-				<ul>
-					{data.people.map((demo) => (
-						<li key={demo.to} className="remix__page__resource">
-							<Link to={demo.to} prefetch="intent">
-								{demo.name}
-							</Link>
-						</li>
-					))}
-				</ul>
+			<aside className="w-full lg:w-1/5 lg:px-6 text-xl text-gray-800 leading-normal">
+				<p className="text-base font-bold py-2 lg:pb-6 text-gray-700">
+					Weekly Issues
+				</p>
+				<div className="w-full inset-0 hidden h-64 lg:h-auto overflow-x-hidden overflow-y-auto lg:overflow-y-hidden lg:block mt-0 border border-gray-400 lg:border-transparent bg-white shadow lg:shadow-none lg:bg-transparent z-20">
+					<ul className="list-reset">
+						{data.postLinks.map((demo) => (
+							<li
+								key={demo.to}
+								className="py-2 md:my-0 hover:bg-purple-100 lg:hover:bg-transparent"
+							>
+								<Link
+									to={demo.to}
+									prefetch="intent"
+									className="block pl-2 align-middle text-gray-700 no-underline hover:text-purple-500 border-l-4 border-transparent lg:hover:border-purple-500"
+								>
+									<span className="pb-1 md:pb-0 text-sm">{demo.name}</span>
+								</Link>
+							</li>
+						))}
+					</ul>
+				</div>
+				<p className="text-base font-bold py-2 lg:pb-6 text-gray-700">
+					Fundamentals
+				</p>
+				<div className="w-full inset-0 hidden h-64 lg:h-auto overflow-x-hidden overflow-y-auto lg:overflow-y-hidden lg:block mt-0 border border-gray-400 lg:border-transparent bg-white shadow lg:shadow-none lg:bg-transparent z-20">
+					<ul className="list-reset">
+						{data.resources.map((resource) => (
+							<li
+								key={resource.url}
+								className="py-2 md:my-0 hover:bg-purple-100 lg:hover:bg-transparent"
+							>
+								<a href={resource.url}>
+									<span className="pb-1 md:pb-0 text-sm">{resource.name}</span>
+								</a>
+							</li>
+						))}
+					</ul>
+				</div>
 			</aside>
 		</div>
 	);

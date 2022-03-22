@@ -1,14 +1,6 @@
 import { Link, useLoaderData } from 'remix';
 
-import { posts } from '../mdx-posts/getAllPosts';
-
-export type Post = {
-	default: Function;
-	attributes: any;
-	slug: string;
-	title: string;
-	description: string;
-};
+import { posts, Post } from '../mdx-posts/getAllPosts';
 
 export async function loader({}) {
 	return posts;
@@ -17,13 +9,17 @@ export async function loader({}) {
 export default function Index() {
 	const posts = useLoaderData();
 	return (
-		<ul>
-			{posts.map((post: Post) => (
-				<li key={post.slug}>
-					<Link to={`/mdx-posts/${post.slug}`}>{post.title}</Link>
-					{post.description ? <p>{post.description}</p> : null}
-				</li>
-			))}
-		</ul>
+		<div className="container w-full flex flex-wrap mx-auto px-2 pt-8 lg:pt-16 mt-16 min-h-screen">
+			<ul>
+				{posts.map((post: Post) => (
+					<li key={post.slug} className="py-2 md:my-0">
+						<Link to={`/posts/${post.index}`}>
+							<h4 className="font-bold">{post.title}</h4>
+						</Link>
+						{post.description ? <p>{post.description}</p> : null}
+					</li>
+				))}
+			</ul>
+		</div>
 	);
 }
