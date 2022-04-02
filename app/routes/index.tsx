@@ -90,7 +90,7 @@ export default function Index() {
 				<p className="mb-2 md:pb-0 text-sm">
 					A lot of the links I simply collected from work. Why not?
 				</p>
-				<div style={{ maxWidth: '500px' }} className="py-4  markdown-body">
+				<div style={{ maxWidth: '100%' }} className="py-4  markdown-body">
 					<LatestIssue />
 				</div>
 			</main>

@@ -1,8 +1,8 @@
-import Index from '..';
 import * as wk1 from './first-post.md';
 import * as wk2 from './wk2.md';
 import * as wk3 from './wk3.md';
-import Latest from './wk3.md';
+import * as wk4 from './wk4.md';
+import Latest from './wk4.md';
 
 export type Post = {
 	default: Function;
@@ -15,7 +15,7 @@ export type Post = {
 	description: string;
 };
 
-const postsCollection = [wk3, wk2, wk1];
+const postsCollection = [wk4, wk3, wk2, wk1];
 const totalCount = postsCollection.length;
 
 function postFromModule(mod: Post, index: number) {
