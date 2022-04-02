@@ -1,7 +1,7 @@
 ---
 meta:
   title: Issue 4 (March 24th - March 30th, 2022)
-  description: React 18
+  description: React 18.0 Released
 ---
 
 ## Issue 4 (March 24th - March 30th, 2022)
