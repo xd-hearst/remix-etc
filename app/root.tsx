@@ -228,7 +228,7 @@ function Layout({ children }: { children: React.ReactNode }) {
 											className="inline-block text-gray-600 no-underline hover:text-gray-900 hover:underline py-1"
 											href="#"
 										>
-											Contact me
+											&copy; 2022
 										</a>
 									</li>
 								</ul>
